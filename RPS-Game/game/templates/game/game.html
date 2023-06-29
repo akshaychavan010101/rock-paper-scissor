@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rock, Paper, Scissors</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <style>
+      /* Add this CSS code to your stylesheet file or inline style */
+
+      @keyframes fade-in {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #eef2f5;
+      }
+
+      .score_card {
+        width: 600px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 1.2rem;
+      }
+
+      .score_table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+      }
+
+      .score_table th,
+      .score_table td {
+        padding: 10px;
+        border-bottom: 1px solid #dddddd;
+      }
+
+      .score_table th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        text-align: left;
+      }
+
+      .score_table td {
+        text-align: left;
+        font-size: larger;
+      }
+
+      .score_table td.highlight {
+        color: #919090;
+        font-weight: bold;
+        text-align: left;
+      }
+
+      .play_card {
+        width: 600px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      h1 {
+        color: #333333;
+        margin-bottom: 10px;
+        font-size: 24px;
+      }
+
+      h2 {
+        color: #333333;
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+
+      h3 {
+        color: #555555;
+        margin-bottom: 5px;
+        font-size: 16px;
+      }
+
+      p {
+        color: #555555;
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
+
+      .button-group {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .error {
+        color: #ff3d3d;
+        font-size: 14px;
+        margin-top: 10px;
+      }
+
+      .logo {
+        margin-bottom: 20px;
+        position: absolute;
+        top: 2%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .logo h1 {
+        font-size: 2.5rem;
+      }
+
+      .logo img {
+        width: 80px;
+        height: 80px;
+      }
+
+      .reset {
+        margin-top: 20px;
+      }
+
+      .reset a {
+        color: #ffffff;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #ff3d3d;
+      }
+
+      #user_choice,
+      #computer_choice {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333333;
+        text-transform: uppercase;
+      }
+
+      #choice {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: black;
+        text-transform: uppercase;
+      }
+
+      #rock,
+      #paper,
+      #scissors,
+      #lizard,
+      #spock {
+        border: none;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        margin: 0 auto;
+        padding: 0.5rem;
+      }
+
+      #rock {
+        background-image: url("https://img.icons8.com/?size=512&id=VmzduRCoagln&format=png");
+      }
+
+      #paper {
+        background-image: url("https://img.icons8.com/?size=512&id=mjnDBNqCzgSV&format=png");
+      }
+
+      #scissors {
+        background-image: url("https://img.icons8.com/?size=512&id=Q1ZSvuXqOjL4&format=png");
+      }
+
+      #lizard {
+        background-image: url("https://img.icons8.com/?size=512&id=jb1IqYRy3429&format=png");
+      }
+
+      #spock {
+        background-image: url("https://img.icons8.com/?size=1x&id=04MkJ1no5kE6&format=png");
+      }
+      #rock:hover,
+      #paper:hover,
+      #scissors:hover,
+      #lizard:hover,
+      #spock:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+      }
+
+      #user_choice span {
+        color: #26bc2b;
+      }
+      #computer_choice span {
+        color: #ea3663;
+      }
+
+      #result {
+        font-size: 2rem;
+        font-weight: bold;
+        color: teal;
+        animation: fade-in 1s ease-in-out;
+      }
+      #user_score {
+        font-weight: bold;
+        color: #26bc2b;
+      }
+
+      #computer_score {
+        font-weight: bold;
+        color: #ce1a1d;
+      }
+      @media screen and (max-width: 480px) {
+        .container {
+          padding: 10px;
+        }
+
+        .score_card,
+        .play_card {
+          margin-bottom: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <h1>Welcome to Rock, Paper, Scissors</h1>
+        <img
+          src="https://img.freepik.com/free-vector/buttons-with-different-hand-signs_1308-84353.jpg?size=626&ext=jpg&ga=GA1.1.1734117549.1688055318&semt=ais"
+          alt="logo"
+        />
+      </div>
+      <div class="score_card">
+        <h2 id="user_choice">🧔🏻 You chose: <span>{{ user_choice }}</span></h2>
+        <h2 id="computer_choice">
+          💻 The computer chose: <span>{{ computer_choice }}</span>
+        </h2>
+        <h2 id="result">🏆 <span>{{ result }}</span></h2>
+
+        <h3>SCORES</h3>
+        <table class="score_table">
+          <tr>
+            <th>Player</th>
+            <th>Score</th>
+          </tr>
+          <tr>
+            <td class="highlight">User</td>
+            <td id="user_score">{{ user_score }}</td>
+          </tr>
+          <tr>
+            <td class="highlight">Computer</td>
+            <td id="computer_score">{{ computer_score }}</td>
+          </tr>
+          <tr>
+            <td class="highlight">Draws</td>
+            <td>{{ draws }}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="play_card">
+        <form action="{% url 'game' %}" method="post">
+          {% csrf_token %}
+          <label for="choice" id="choice">Select your choice</label>
+          <div class="button-group">
+            <button type="submit" name="choice" id="rock" value="rock"></button>
+            <button
+              type="submit"
+              name="choice"
+              id="paper"
+              value="paper"
+            ></button>
+            <button
+              type="submit"
+              name="choice"
+              id="scissors"
+              value="scissors"
+            ></button>
+            <button
+              type="submit"
+              name="choice"
+              id="lizard"
+              value="lizard"
+            ></button>
+            <button
+              type="submit"
+              name="choice"
+              id="spock"
+              value="spock"
+            ></button>
+          </div>
+        </form>
+      </div>
+      <div class="reset">
+        <a href="{% url 'game' %}?reset=1">Reset Game</a>
+      </div>
+
+      {% if error %}
+      <p class="error">{{ error }}</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
